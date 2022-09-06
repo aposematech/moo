@@ -52,12 +52,12 @@ module "image_repo" {
   image_repo_name = module.git_repo.git_repo_name
 }
 
-# module "lambda_function" {
-#   source             = "./modules/lambda-function"
-#   function_name      = module.image_repo.image_repo_name
-#   aws_region         = var.aws_region
-#   aws_account_number = var.aws_account_number
-# }
+module "lambda_function" {
+  source             = "./modules/lambda-function"
+  function_name      = module.image_repo.image_repo_name
+  aws_region         = var.aws_region
+  aws_account_number = var.aws_account_number
+}
 
 module "function_domain" {
   source                 = "./modules/function-domain"
