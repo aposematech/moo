@@ -53,10 +53,12 @@ module "image_repo" {
 }
 
 module "lambda_function" {
-  source             = "./modules/lambda-function"
-  function_name      = module.image_repo.image_repo_name
-  aws_region         = var.aws_region
-  aws_account_number = var.aws_account_number
+  source                 = "./modules/lambda-function"
+  function_name          = module.image_repo.image_repo_name
+  aws_region             = var.aws_region
+  aws_account_number     = var.aws_account_number
+  registered_domain_name = module.function_domain.registered_domain_name
+  hosted_zone_id         = module.function_domain.hosted_zone_id
 }
 
 module "function_domain" {

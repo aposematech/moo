@@ -88,6 +88,99 @@ resource "aws_lambda_function_url" "function_url" {
 
   cors {
     allow_origins = ["*"]
-    allow_methods = ["GET"]
+    allow_methods = ["GET", "HEAD"]
   }
 }
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate
+resource "aws_acm_certificate" "certificate" {
+  domain_name       = "quotes.${var.registered_domain_name}"
+  validation_method = "DNS"
+
+  validation_option {
+    domain_name       = "quotes.${var.registered_domain_name}"
+    validation_domain = var.registered_domain_name
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
+resource "aws_route53_record" "certificate_validation_record" {
+  for_each = {
+    for dvo in aws_acm_certificate.certificate.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = var.hosted_zone_id
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate_validation
+resource "aws_acm_certificate_validation" "certificate_validation" {
+  certificate_arn         = aws_acm_certificate.certificate.arn
+  validation_record_fqdns = [for record in aws_route53_record.certificate_validation_record : record.fqdn]
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution
+resource "aws_cloudfront_distribution" "cloudfront_distribution" {
+  origin {
+    domain_name = "quotes.${var.registered_domain_name}"
+    origin_id   = aws_lambda_function_url.function_url.function_url
+  }
+
+  enabled = true
+  aliases = ["${var.registered_domain_name}"]
+
+  default_cache_behavior {
+    allowed_methods  = ["GET", "HEAD"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = var.registered_domain_name
+
+    forwarded_values {
+      query_string = false
+
+      cookies {
+        forward = "none"
+      }
+    }
+
+    viewer_protocol_policy = "redirect-to-https"
+  }
+
+  price_class = "PriceClass_100"
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  viewer_certificate {
+    acm_certificate_arn      = aws_acm_certificate.certificate.arn
+    minimum_protocol_version = "TLSv1.2_2021"
+    ssl_support_method       = "sni-only"
+  }
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
+# resource "aws_route53_record" "cloudfront_distribution_record" {
+#   zone_id = aws_route53_zone.zone.zone_id
+#   name    = var.registered_domain_name
+#   type    = "A"
+
+#   alias {
+#     name                   = aws_cloudfront_distribution.cloudfront_distribution.domain_name
+#     zone_id                = aws_cloudfront_distribution.cloudfront_distribution.hosted_zone_id
+#     evaluate_target_health = false
+#   }
+# }
