@@ -4,7 +4,7 @@
 
 Basic: `curl https://quotes.djfav.ninja`
 
-Advanced: `curl -s -XPOST "http://quotes.djfav.ninja" -d '{}' | jq .body.quote | tr -d '"' | cowsay`
+Advanced: `curl -s -XPOST "http://quotes.djfav.ninja" -d '{}' | jq .quote | tr -d '"' | cowsay`
 
 ```
  ________________________________________
