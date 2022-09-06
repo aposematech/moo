@@ -1,8 +1,10 @@
 # cowsay-quotes
 
-Usage: `curl https://quotes.djfav.ninja`
+### Usage
 
-Advanced Usage: `curl -s -XPOST "http://quotes.djfav.ninja" -d '{}' | jq .body.quote | tr -d '"' | cowsay`
+Basic: `curl https://quotes.djfav.ninja`
+
+Advanced: `curl -s -XPOST "http://quotes.djfav.ninja" -d '{}' | jq .body.quote | tr -d '"' | cowsay`
 
 ```
  ________________________________________
