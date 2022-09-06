@@ -4,7 +4,7 @@
 
 Basic: `curl https://example.com`
 
-Advanced: `curl -s -XPOST "http://example.com" -d '{}' | jq .quote | tr -d '"' | cowsay`
+Advanced: `curl -s -XPOST "http://example.com" -d '{}' | jq -r .quote | cowsay`
 
 ```
  ________________________________________
