@@ -57,7 +57,6 @@ module "lambda_function" {
   function_name      = module.image_repo.image_repo_name
   aws_region         = var.aws_region
   aws_account_number = var.aws_account_number
-  api_arn            = module.function_gateway.api_arn
 }
 
 module "function_domain" {
@@ -73,4 +72,6 @@ module "function_gateway" {
   certificate_arn         = module.function_domain.certificate_arn
   certificate_domain_name = module.function_domain.certificate_domain_name
   hosted_zone_id          = module.function_domain.hosted_zone_id
+  aws_region              = var.aws_region
+  aws_account_number      = var.aws_account_number
 }

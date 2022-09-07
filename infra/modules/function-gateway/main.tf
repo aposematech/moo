@@ -66,3 +66,11 @@ resource "aws_route53_record" "api_gateway_record" {
     evaluate_target_health = false
   }
 }
+
+resource "aws_lambda_permission" "allow_api_gateway" {
+  statement_id  = "allow-${var.lambda_function_name}-api-gateway"
+  action        = "lambda:InvokeFunction"
+  function_name = var.lambda_function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_number}:${aws_apigatewayv2_api.api.id}/*/*/${var.lambda_function_name}"
+}

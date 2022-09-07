@@ -15,9 +15,3 @@ variable "aws_account_number" {
   type        = string
   default     = ""
 }
-
-variable "api_arn" {
-  description = "API Gateway ARN"
-  type        = string
-  default     = ""
-}
