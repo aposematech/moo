@@ -62,4 +62,5 @@ module "lambda_function" {
 module "function_domain" {
   source                 = "./modules/function-domain"
   registered_domain_name = var.registered_domain_name
+  api_subdomain_name     = var.api_subdomain_name
 }

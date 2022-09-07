@@ -20,11 +20,11 @@ resource "aws_route53_zone" "zone" {
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate
 resource "aws_acm_certificate" "certificate" {
-  domain_name       = "quotes.${var.registered_domain_name}"
+  domain_name       = "${var.api_subdomain_name}.${var.registered_domain_name}"
   validation_method = "DNS"
 
   validation_option {
-    domain_name       = "quotes.${var.registered_domain_name}"
+    domain_name       = "${var.api_subdomain_name}.${var.registered_domain_name}"
     validation_domain = var.registered_domain_name
   }
 

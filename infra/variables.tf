@@ -41,3 +41,9 @@ variable "registered_domain_name" {
   type        = string
   default     = ""
 }
+
+variable "api_subdomain_name" {
+  description = "API Subdomain Name"
+  type        = string
+  default     = ""
+}
