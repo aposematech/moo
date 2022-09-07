@@ -82,16 +82,6 @@ resource "aws_lambda_function" "lambda_function" {
   }
 }
 
-resource "aws_lambda_function_url" "function_url" {
-  function_name      = aws_lambda_function.lambda_function.function_name
-  authorization_type = "NONE"
-
-  cors {
-    allow_origins = ["*"]
-    allow_methods = ["GET", "HEAD"]
-  }
-}
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate
 resource "aws_acm_certificate" "certificate" {
   domain_name       = "quotes.${var.registered_domain_name}"
