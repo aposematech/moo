@@ -16,6 +16,7 @@ resource "aws_apigatewayv2_api" "api" {
   }
 }
 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_stage
 resource "aws_apigatewayv2_stage" "default_stage" {
   api_id      = aws_apigatewayv2_api.api.id
   name        = "default"
@@ -68,6 +69,7 @@ resource "aws_route53_record" "api_gateway_record" {
   }
 }
 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission
 resource "aws_lambda_permission" "allow_api_gateway" {
   statement_id  = "allow-${var.lambda_function_name}-api-gateway"
   action        = "lambda:InvokeFunction"
