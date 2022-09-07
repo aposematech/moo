@@ -75,9 +75,12 @@ resource "aws_lambda_function" "lambda_function" {
   package_type  = "Image"
   image_uri     = "${var.aws_account_number}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.function_name}:latest"
   role          = aws_iam_role.lambda_role.arn
-  environment {
-    variables = {
-      EXAMPLE_ENV_VAR = "example"
-    }
-  }
+}
+
+resource "aws_lambda_permission" "allow_api_gateway" {
+  statement_id  = "allow-${var.function_name}-api-gateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_function.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = var.api_arn
 }

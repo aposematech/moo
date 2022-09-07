@@ -57,10 +57,20 @@ module "lambda_function" {
   function_name      = module.image_repo.image_repo_name
   aws_region         = var.aws_region
   aws_account_number = var.aws_account_number
+  api_arn            = module.function_gateway.api_arn
 }
 
 module "function_domain" {
   source                 = "./modules/function-domain"
   registered_domain_name = var.registered_domain_name
   api_subdomain_name     = var.api_subdomain_name
+}
+
+module "function_gateway" {
+  source                  = "./modules/function-gateway"
+  lambda_function_name    = module.lambda_function.lambda_function_name
+  lambda_function_arn     = module.lambda_function.lambda_function_arn
+  certificate_arn         = module.function_domain.certificate_arn
+  certificate_domain_name = module.function_domain.certificate_domain_name
+  hosted_zone_id          = module.function_domain.hosted_zone_id
 }
