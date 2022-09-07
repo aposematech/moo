@@ -2,9 +2,9 @@
 
 ### Usage
 
-Basic: `curl example.com`
+Basic: `curl https://api.djfav.ninja/cowsay-quotes`
 
-Advanced: `curl -s example.com | jq -r .quote | cowsay`
+Advanced: `curl -s https://api.djfav.ninja/cowsay-quotes | jq -r .quote | cowsay`
 
 ```
  ________________________________________
