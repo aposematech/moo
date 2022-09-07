@@ -2,9 +2,9 @@
 
 ### Usage
 
-Basic: `curl https://example.com`
+Basic: `curl example.com`
 
-Advanced: `curl -s http://example.com | jq -r .quote | cowsay`
+Advanced: `curl -s example.com | jq -r .quote | cowsay`
 
 ```
  ________________________________________
