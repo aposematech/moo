@@ -33,11 +33,10 @@ provider "aws" {
 }
 
 module "git_repo" {
-  source               = "./modules/git-repo"
-  git_repo_name        = terraform.workspace
-  git_repo_description = var.git_repo_description
-  # git_repo_homepage_url   = "https://quotes.${var.registered_domain_name}"
-  git_repo_homepage_url   = ""
+  source                  = "./modules/git-repo"
+  git_repo_name           = terraform.workspace
+  git_repo_description    = var.git_repo_description
+  git_repo_homepage_url   = "https://${var.api_subdomain_name}.${var.registered_domain_name}/${terraform.workspace}"
   git_repo_visibility     = var.git_repo_visibility
   aws_access_key_id_name  = "AWS_ACCESS_KEY_ID"
   aws_access_key_id_value = var.aws_access_key_id
