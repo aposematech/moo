@@ -4,6 +4,7 @@
 # https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html
 
 import random
+import json
 # import cowsay # https://pypi.org/project/cowsay # add to requirements.txt
 
 # https://awslabs.github.io/aws-lambda-powertools-python/latest/
@@ -26,8 +27,8 @@ def handler(event, context):
         "headers": {
             "Content-Type": "application/json"
         },
-        "body": {
+        "body": json.dumps({
             "name": quote[0],
             "quote": quote[1].strip()
-        }
+        })
     }
