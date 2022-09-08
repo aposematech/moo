@@ -47,3 +47,35 @@ variable "api_subdomain_name" {
   type        = string
   default     = ""
 }
+
+variable "betteruptime_api_token" {
+  description = "Better Uptime API Token"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
+variable "betteruptime_subdomain" {
+  description = "Better Uptime Status Page Subdomain"
+  type        = string
+  default     = ""
+}
+
+variable "custom_status_page_subdomain" {
+  description = "Custom Status Page Subdomain"
+  type        = string
+  default     = ""
+}
+
+variable "checkly_account_id" {
+  description = "Checkly Account ID"
+  type        = string
+  default     = ""
+}
+
+variable "checkly_api_key" {
+  description = "Checkly API Key"
+  type        = string
+  default     = ""
+  sensitive   = true
+}

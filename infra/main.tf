@@ -17,6 +17,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.28.0"
     }
+    betteruptime = {
+      source  = "BetterStackHQ/better-uptime"
+      version = "~> 0.3.0"
+    }
+    checkly = {
+      source  = "checkly/checkly"
+      version = "~> 1.4.0"
+    }
   }
 }
 
@@ -30,6 +38,17 @@ provider "aws" {
   region = var.aws_region
   # export AWS_ACCESS_KEY_ID
   # export AWS_SECRET_ACCESS_KEY
+}
+
+# https://registry.terraform.io/providers/BetterStackHQ/better-uptime/latest/docs
+provider "betteruptime" {
+  api_token = var.betteruptime_api_token
+}
+
+# https://registry.terraform.io/providers/checkly/checkly/latest/docs
+provider "checkly" {
+  api_key    = var.checkly_api_key
+  account_id = var.checkly_account_id
 }
 
 module "git_repo" {
@@ -73,4 +92,15 @@ module "function_gateway" {
   hosted_zone_id          = module.function_domain.hosted_zone_id
   aws_region              = var.aws_region
   aws_account_number      = var.aws_account_number
+}
+
+module "function_monitors" {
+  source                       = "./modules/function-monitors"
+  aws_region                   = var.aws_region
+  registered_domain_name       = module.function_domain.registered_domain_name
+  certificate_domain_name      = module.function_domain.certificate_domain_name
+  hosted_zone_id               = module.function_domain.hosted_zone_id
+  api_gateway_name             = module.function_gateway.api_gateway_name
+  betteruptime_subdomain       = var.betteruptime_subdomain
+  custom_status_page_subdomain = var.custom_status_page_subdomain
 }
