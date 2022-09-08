@@ -39,7 +39,7 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_route
 resource "aws_apigatewayv2_route" "route" {
   api_id    = aws_apigatewayv2_api.api.id
-  route_key = "ANY /${var.lambda_function_name}"
+  route_key = "GET /${var.lambda_function_name}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
 
