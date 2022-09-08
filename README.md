@@ -1,4 +1,4 @@
-# cowsay-quotes
+# moo
 
 ### Usage
 
