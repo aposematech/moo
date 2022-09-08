@@ -8,7 +8,7 @@ import json
 # import cowsay # https://pypi.org/project/cowsay # add to requirements.txt
 
 # https://awslabs.github.io/aws-lambda-powertools-python/latest/
-# from aws_lambda_powertools.utilities import parameters # add aws-lambda-powertools to requirements.txt
+# from aws_lambda_powertools.utilities import parameters # add to requirements.txt
 
 def random_quote(quote_file):
     # quote_lines = open('file.txt').read().splitlines()
@@ -28,7 +28,7 @@ def handler(event, context):
             "Content-Type": "application/json"
         },
         "body": json.dumps({
-            "name": quote[0],
-            "quote": quote[1].strip()
+            "quote": quote[1].strip(),
+            "name": quote[0]
         })
     }
