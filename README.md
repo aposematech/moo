@@ -4,12 +4,12 @@
 
 Basic:
 ```
-$ curl https://api.djfav.ninja/cowsay-quotes
+$ curl https://api.djfav.ninja/moo
 ```
 
 Advanced:
 ```
-$ curl -s https://api.djfav.ninja/cowsay-quotes | jq -r .quote | cowsay
+$ curl -s https://api.djfav.ninja/moo | jq -r .quote | cowsay
  ________________________________________
 / You must have chaos within you to give \
 \ birth to a dancing star.               /
