@@ -26,7 +26,7 @@ resource "aws_ecr_lifecycle_policy" "ecr_repo_lifecycle_policy" {
   "rules": [
     {
       "rulePriority": 1,
-      "description": "Expire untagged images older than 1 day",
+      "description": "Expire untagged images if count more than 1",
       "selection": {
         "tagStatus": "untagged",
         "countType": "imageCountMoreThan",
