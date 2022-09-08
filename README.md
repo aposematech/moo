@@ -1,13 +1,5 @@
 # moo
 
-### Usage
-
-Basic:
-```
-$ curl https://api.djfav.ninja/moo
-```
-
-Advanced:
 ```
 $ sudo apt-get update
 $ sudo apt-get install -y cowsay jq
