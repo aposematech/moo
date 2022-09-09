@@ -1,6 +1,5 @@
 Alice|Curiouser and curiouser!
 Antoine Roquentin|All that I know about my life, it seems, I have learned in books.
-Antoine Roquentin|I exist, that is all, and I find it nauseating.
 Bernard Marx|I'd rather be myself. Myself and nasty. Not somebody else, however jolly.
 Gregor Samsa|How about if I sleep a little bit longer and forget all this nonsense.
 Holden Caulfield|I thought what I'd do was, I'd pretend I was one of those deaf-mutes.
@@ -15,5 +14,4 @@ The Judge|Men are born for games. Nothing else.
 Underground Man|Granted I am a babbler, a harmless vexatious babbler, like all of us.
 Winston Smith|Two and two are four.
 Zarathustra|Man is the cruelest animal.
-Zarathustra|You have evolved from worm to man, but much within you is still worm.
 Zarathustra|You must have chaos within you to give birth to a dancing star.
