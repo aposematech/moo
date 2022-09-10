@@ -70,6 +70,11 @@ module "ecr" {
   ecr_repo_name = module.git.git_repo_name
 }
 
+module "db" {
+  source        = "./modules/db"
+  db_table_name = module.ecr.ecr_repo_name
+}
+
 module "lambda" {
   source             = "./modules/lambda"
   function_name      = module.ecr.ecr_repo_name
