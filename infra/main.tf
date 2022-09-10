@@ -77,30 +77,30 @@ module "lambda" {
   aws_account_number = var.aws_account_number
 }
 
-module "domain" {
-  source                 = "./modules/domain"
+module "dns" {
+  source                 = "./modules/dns"
   registered_domain_name = var.registered_domain_name
   api_subdomain_name     = var.api_subdomain_name
 }
 
-module "gateway" {
-  source                  = "./modules/gateway"
+module "api" {
+  source                  = "./modules/api"
   lambda_function_name    = module.lambda.lambda_function_name
   lambda_function_arn     = module.lambda.lambda_function_arn
-  certificate_arn         = module.domain.certificate_arn
-  certificate_domain_name = module.domain.certificate_domain_name
-  hosted_zone_id          = module.domain.hosted_zone_id
+  certificate_arn         = module.dns.certificate_arn
+  certificate_domain_name = module.dns.certificate_domain_name
+  hosted_zone_id          = module.dns.hosted_zone_id
   aws_region              = var.aws_region
   aws_account_number      = var.aws_account_number
 }
 
-module "monitors" {
-  source                       = "./modules/monitors"
+module "ops" {
+  source                       = "./modules/ops"
   aws_region                   = var.aws_region
-  registered_domain_name       = module.domain.registered_domain_name
-  certificate_domain_name      = module.domain.certificate_domain_name
-  hosted_zone_id               = module.domain.hosted_zone_id
-  api_gateway_name             = module.gateway.api_gateway_name
+  registered_domain_name       = module.dns.registered_domain_name
+  certificate_domain_name      = module.dns.certificate_domain_name
+  hosted_zone_id               = module.dns.hosted_zone_id
+  api_gateway_name             = module.api.api_gateway_name
   betteruptime_subdomain       = var.betteruptime_subdomain
   custom_status_page_subdomain = var.custom_status_page_subdomain
 }
