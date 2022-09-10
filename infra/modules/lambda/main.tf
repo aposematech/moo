@@ -30,6 +30,17 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy_document" {
       "arn:aws:logs:${var.aws_region}:${var.aws_account_number}:log-group:/aws/lambda/${var.function_name}:*",
     ]
   }
+  statement {
+    effect = "Allow"
+    actions = [
+      "dynamodb:Query",
+      "dynamodb:GetItem",
+      "dynamodb:BatchGetItem",
+    ]
+    resources = [
+      "arn:aws:dynamodb:${var.aws_region}:${var.aws_account_number}:table/${var.function_name}",
+    ]
+  }
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy
