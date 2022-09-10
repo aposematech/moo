@@ -77,7 +77,8 @@ module "db" {
 
 module "lambda" {
   source             = "./modules/lambda"
-  function_name      = module.ecr.ecr_repo_name
+  function_name      = module.db.db_table_name
+  db_table_arn       = module.db.db_table_arn
   aws_region         = var.aws_region
   aws_account_number = var.aws_account_number
 }
@@ -90,7 +91,7 @@ module "dns" {
 
 module "api" {
   source                  = "./modules/api"
-  lambda_function_name    = module.lambda.lambda_function_name
+  api_gateway_name        = module.lambda.lambda_function_name
   lambda_function_arn     = module.lambda.lambda_function_arn
   certificate_arn         = module.dns.certificate_arn
   certificate_domain_name = module.dns.certificate_domain_name
@@ -101,11 +102,11 @@ module "api" {
 
 module "ops" {
   source                       = "./modules/ops"
-  aws_region                   = var.aws_region
   registered_domain_name       = module.dns.registered_domain_name
   certificate_domain_name      = module.dns.certificate_domain_name
   hosted_zone_id               = module.dns.hosted_zone_id
   api_gateway_name             = module.api.api_gateway_name
   betteruptime_subdomain       = var.betteruptime_subdomain
   custom_status_page_subdomain = var.custom_status_page_subdomain
+  aws_region                   = var.aws_region
 }

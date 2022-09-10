@@ -4,6 +4,12 @@ variable "function_name" {
   default     = ""
 }
 
+variable "db_table_arn" {
+  description = "DynamoDB Table ARN"
+  type        = string
+  default     = ""
+}
+
 variable "aws_region" {
   description = "AWS Region"
   type        = string

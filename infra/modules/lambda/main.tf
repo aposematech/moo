@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy_document" {
       "dynamodb:BatchGetItem",
     ]
     resources = [
-      "arn:aws:dynamodb:${var.aws_region}:${var.aws_account_number}:table/${var.function_name}:*",
+      "${var.db_table_arn}:*",
     ]
   }
 }

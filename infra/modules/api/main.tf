@@ -1,6 +1,6 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_api
 resource "aws_apigatewayv2_api" "api" {
-  name                         = var.lambda_function_name
+  name                         = var.api_gateway_name
   protocol_type                = "HTTP"
   disable_execute_api_endpoint = true
 
@@ -37,7 +37,7 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_route
 resource "aws_apigatewayv2_route" "route" {
   api_id    = aws_apigatewayv2_api.api.id
-  route_key = "GET /${var.lambda_function_name}"
+  route_key = "GET /${aws_apigatewayv2_api.api.name}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
 
@@ -74,9 +74,9 @@ resource "aws_route53_record" "api_gateway_record" {
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission
 resource "aws_lambda_permission" "allow_api_gateway" {
-  statement_id  = "allow-${var.lambda_function_name}-api-gateway"
+  statement_id  = "allow-${aws_apigatewayv2_api.api.name}-api-gateway"
   action        = "lambda:InvokeFunction"
-  function_name = var.lambda_function_name
+  function_name = aws_apigatewayv2_api.api.name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_number}:${aws_apigatewayv2_api.api.id}/*/*/${var.lambda_function_name}"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_number}:${aws_apigatewayv2_api.api.id}/*/*/${aws_apigatewayv2_api.api.name}"
 }

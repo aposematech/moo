@@ -10,6 +10,12 @@ variable "certificate_domain_name" {
   default     = ""
 }
 
+variable "hosted_zone_id" {
+  description = "Hosted Zone ID"
+  type        = string
+  default     = ""
+}
+
 variable "api_gateway_name" {
   description = "API Gateway Name"
   type        = string
@@ -24,12 +30,6 @@ variable "betteruptime_subdomain" {
 
 variable "custom_status_page_subdomain" {
   description = "Custom Status Page Subdomain"
-  type        = string
-  default     = ""
-}
-
-variable "hosted_zone_id" {
-  description = "Hosted Zone ID"
   type        = string
   default     = ""
 }

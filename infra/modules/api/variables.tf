@@ -1,5 +1,5 @@
-variable "lambda_function_name" {
-  description = "AWS Lambda Function Name"
+variable "api_gateway_name" {
+  description = "API Gateway Name"
   type        = string
   default     = ""
 }
