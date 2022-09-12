@@ -24,7 +24,7 @@ resource "aws_dynamodb_table_item" "lorem_ipsum" {
 
   item = <<ITEM
 {
-  "${aws_dynamodb_table.db_table.hash_key}": {"S": "${var.db_table_name}"}, "${aws_dynamodb_table.db_table.range_key}": {"S": "${uuid()}"}, "value": {"M": {"name": {"S":"Cicero"}, "quote": {"S": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod..."}}}
+  "${aws_dynamodb_table.db_table.hash_key}": {"S": "${var.db_table_name}"}, "${aws_dynamodb_table.db_table.range_key}": {"S": "${uuid()}"}, "value": {"M": {"name": {"S": "Cicero"}, "quote": {"S": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod..."}}}
 }
 ITEM
 
