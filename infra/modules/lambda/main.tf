@@ -35,7 +35,6 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy_document" {
     actions = [
       "dynamodb:Query",
       "dynamodb:GetItem",
-      "dynamodb:BatchGetItem",
     ]
     resources = [
       "${var.db_table_arn}:*",
