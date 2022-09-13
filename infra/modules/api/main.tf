@@ -1,3 +1,13 @@
+terraform {
+  # https://www.terraform.io/language/providers/requirements
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.28.0"
+    }
+  }
+}
+
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_api
 resource "aws_apigatewayv2_api" "api" {
   name                         = var.api_gateway_name
