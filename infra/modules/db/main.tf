@@ -5,6 +5,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.28.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.4.0"
+    }
   }
 }
 
@@ -26,6 +30,9 @@ resource "aws_dynamodb_table" "db_table" {
   }
 }
 
+# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid
+resource "random_uuid" "uuid" {}
+
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table_item
 resource "aws_dynamodb_table_item" "lorem_ipsum" {
   table_name = aws_dynamodb_table.db_table.name
@@ -34,13 +41,7 @@ resource "aws_dynamodb_table_item" "lorem_ipsum" {
 
   item = <<ITEM
 {
-  "${aws_dynamodb_table.db_table.hash_key}": {"S": "${var.db_table_name}"}, "${aws_dynamodb_table.db_table.range_key}": {"S": "${uuid()}"}, "value": {"M": {"name": {"S": "Cicero"}, "quote": {"S": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod..."}}}
+  "${aws_dynamodb_table.db_table.hash_key}": {"S": "${var.db_table_name}"}, "${aws_dynamodb_table.db_table.range_key}": {"S": "${random_uuid.uuid.result}"}, "value": {"M": {"name": {"S": "Cicero"}, "quote": {"S": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod..."}}}
 }
 ITEM
-
-  lifecycle {
-    ignore_changes = [
-      item,
-    ]
-  }
 }

@@ -17,6 +17,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.28.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.4.0"
+    }
     betteruptime = {
       source  = "BetterStackHQ/better-uptime"
       version = "~> 0.3.0"
@@ -39,6 +43,9 @@ provider "aws" {
   # export AWS_ACCESS_KEY_ID
   # export AWS_SECRET_ACCESS_KEY
 }
+
+# https://registry.terraform.io/providers/hashicorp/random/latest/docs
+provider "random" {}
 
 # https://registry.terraform.io/providers/BetterStackHQ/better-uptime/latest/docs
 provider "betteruptime" {
