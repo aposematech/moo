@@ -75,8 +75,8 @@ resource "aws_route53_record" "api_gateway_record" {
   type    = "A"
 
   alias {
-    name                   = aws_apigatewayv2_domain_name.api_domain_name.domain_name_configuration.0.target_domain_name
-    zone_id                = aws_apigatewayv2_domain_name.api_domain_name.domain_name_configuration.0.hosted_zone_id
+    name                   = aws_apigatewayv2_domain_name.api_domain_name.domain_name_configuration[0].target_domain_name
+    zone_id                = aws_apigatewayv2_domain_name.api_domain_name.domain_name_configuration[0].hosted_zone_id
     evaluate_target_health = false
   }
 }
