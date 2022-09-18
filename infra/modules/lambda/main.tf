@@ -1,4 +1,3 @@
-# https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html#urls-auth-none
 terraform {
   # https://www.terraform.io/language/providers/requirements
   required_providers {
