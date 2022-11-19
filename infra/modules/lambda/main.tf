@@ -36,7 +36,7 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy_document" {
       "dynamodb:GetItem",
     ]
     resources = [
-      "${var.db_table_arn}:*",
+      var.db_table_arn,
     ]
   }
 }
