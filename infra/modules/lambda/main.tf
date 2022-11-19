@@ -84,4 +84,10 @@ resource "aws_lambda_function" "lambda_function" {
   package_type  = "Image"
   image_uri     = "${var.aws_account_number}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.function_name}:latest"
   role          = aws_iam_role.lambda_role.arn
+  environment {
+    variables = {
+      DB_TABLE_NAME     = var.function_name,
+      DB_TABLE_HASH_KEY = var.function_name,
+    }
+  }
 }
