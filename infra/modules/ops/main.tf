@@ -33,35 +33,6 @@ resource "betteruptime_monitor" "monitor" {
   ssl_expiration    = 30
 }
 
-# out of free status pages
-
-# https://registry.terraform.io/providers/BetterStackHQ/better-uptime/latest/docs/resources/betteruptime_status_page
-# resource "betteruptime_status_page" "status_page" {
-#   company_name  = var.certificate_domain_name
-#   company_url   = "https://${var.certificate_domain_name}/${var.api_gateway_name}"
-#   subdomain     = var.betteruptime_subdomain
-#   custom_domain = "${var.custom_status_page_subdomain}.${var.registered_domain_name}"
-#   timezone      = "Central Time (US & Canada)"
-# }
-
-# https://registry.terraform.io/providers/BetterStackHQ/better-uptime/latest/docs/resources/betteruptime_status_page_resource
-# resource "betteruptime_status_page_resource" "status_page_resource" {
-#   public_name    = "${var.certificate_domain_name}/${var.api_gateway_name}"
-#   resource_id    = betteruptime_monitor.monitor.id
-#   resource_type  = "Monitor"
-#   status_page_id = betteruptime_status_page.status_page.id
-#   history        = true
-# }
-
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
-# resource "aws_route53_record" "status_page_record" {
-#   zone_id = var.hosted_zone_id
-#   name    = var.custom_status_page_subdomain
-#   type    = "CNAME"
-#   records = ["statuspage.betteruptime.com"]
-#   ttl     = 60
-# }
-
 # https://registry.terraform.io/providers/checkly/checkly/latest/docs/resources/check
 resource "checkly_check" "api_check" {
   name                      = "${var.certificate_domain_name}/${var.api_gateway_name}"
