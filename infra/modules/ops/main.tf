@@ -21,7 +21,7 @@ resource "betteruptime_monitor" "monitor" {
   monitor_type = "status"
   url          = "https://${var.certificate_domain_name}/${var.api_gateway_name}"
   email        = true
-  paused       = true
+  paused       = false
 
   check_frequency     = 180
   request_timeout     = 15
@@ -66,7 +66,7 @@ resource "betteruptime_monitor" "monitor" {
 resource "checkly_check" "api_check" {
   name                      = "${var.certificate_domain_name}/${var.api_gateway_name}"
   type                      = "API"
-  activated                 = false
+  activated                 = true
   should_fail               = false
   frequency                 = 15
   double_check              = true
