@@ -28,6 +28,10 @@ resource "aws_dynamodb_table" "db_table" {
     name = "sk"
     type = "S"
   }
+
+  point_in_time_recovery {
+    enabled = true
+  }
 }
 
 # https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid
