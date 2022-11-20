@@ -18,16 +18,6 @@ variable "api_gateway_name" {
   type        = string
 }
 
-variable "betteruptime_subdomain" {
-  description = "Better Uptime Status Page Subdomain"
-  type        = string
-}
-
-variable "custom_status_page_subdomain" {
-  description = "Custom Status Page Subdomain"
-  type        = string
-}
-
 variable "aws_region" {
   description = "AWS Region"
   type        = string

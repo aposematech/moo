@@ -81,17 +81,17 @@ module "git" {
 
 module "ecr" {
   source        = "./modules/ecr"
-  ecr_repo_name = module.git.git_repo_name
+  ecr_repo_name = terraform.workspace
 }
 
 module "db" {
   source        = "./modules/db"
-  db_table_name = module.ecr.ecr_repo_name
+  db_table_name = terraform.workspace
 }
 
 module "lambda" {
   source             = "./modules/lambda"
-  function_name      = module.db.db_table_name
+  function_name      = terraform.workspace
   db_table_arn       = module.db.db_table_arn
   aws_region         = var.aws_region
   aws_account_number = var.aws_account_number
@@ -105,7 +105,7 @@ module "dns" {
 
 module "api" {
   source                  = "./modules/api"
-  api_gateway_name        = module.lambda.lambda_function_name
+  api_gateway_name        = terraform.workspace
   lambda_function_arn     = module.lambda.lambda_function_arn
   certificate_arn         = module.dns.certificate_arn
   certificate_domain_name = module.dns.certificate_domain_name
@@ -115,12 +115,10 @@ module "api" {
 }
 
 module "ops" {
-  source                       = "./modules/ops"
-  registered_domain_name       = module.dns.registered_domain_name
-  certificate_domain_name      = module.dns.certificate_domain_name
-  hosted_zone_id               = module.dns.hosted_zone_id
-  api_gateway_name             = module.api.api_gateway_name
-  betteruptime_subdomain       = var.betteruptime_subdomain
-  custom_status_page_subdomain = var.custom_status_page_subdomain
-  aws_region                   = var.aws_region
+  source                  = "./modules/ops"
+  registered_domain_name  = module.dns.registered_domain_name
+  certificate_domain_name = module.dns.certificate_domain_name
+  hosted_zone_id          = module.dns.hosted_zone_id
+  api_gateway_name        = module.api.api_gateway_name
+  aws_region              = var.aws_region
 }
