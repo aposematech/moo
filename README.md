@@ -16,4 +16,5 @@ $ curl -s https://api.djfav.ninja/moo | jq -r .quote | cowsay -d
                 ||     ||
 ```
 # aws
+
 ![diagram](./moo.drawio.png)
