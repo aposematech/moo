@@ -46,16 +46,6 @@ variable "betteruptime_api_token" {
   sensitive   = true
 }
 
-variable "betteruptime_subdomain" {
-  description = "Better Uptime Status Page Subdomain"
-  type        = string
-}
-
-variable "custom_status_page_subdomain" {
-  description = "Custom Status Page Subdomain"
-  type        = string
-}
-
 variable "checkly_account_id" {
   description = "Checkly Account ID"
   type        = string
