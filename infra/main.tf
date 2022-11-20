@@ -11,11 +11,11 @@ terraform {
   required_providers {
     github = {
       source  = "integrations/github"
-      version = "~> 4.31.0"
+      version = "~> 5.9.0"
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.28.0"
+      version = "~> 4.40.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -23,11 +23,11 @@ terraform {
     }
     betteruptime = {
       source  = "BetterStackHQ/better-uptime"
-      version = "~> 0.3.12"
+      version = "~> 0.3.13"
     }
     checkly = {
       source  = "checkly/checkly"
-      version = "~> 1.4.3"
+      version = "~> 1.6.3"
     }
   }
 }

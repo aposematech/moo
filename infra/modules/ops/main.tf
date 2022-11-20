@@ -1,17 +1,13 @@
 terraform {
   # https://www.terraform.io/language/providers/requirements
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.28.0"
-    }
     betteruptime = {
       source  = "BetterStackHQ/better-uptime"
-      version = "~> 0.3.12"
+      version = "~> 0.3.13"
     }
     checkly = {
       source  = "checkly/checkly"
-      version = "~> 1.4.3"
+      version = "~> 1.6.3"
     }
   }
 }
