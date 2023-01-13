@@ -1,4 +1,4 @@
-name: Build, tag, push, and deploy image
+name: Build, tag, push, and deploy Docker image
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    name: Build, tag, push, and deploy image
+    name: Build, tag, push, and deploy Docker image
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -30,7 +30,7 @@ jobs:
       # https://github.com/marketplace/actions/amazon-ecr-login-action-for-github-actions
       uses: aws-actions/amazon-ecr-login@v1
     
-    - name: Build, tag, push, and deploy image
+    - name: Build, tag, push, and deploy Docker image
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: ${{ github.event.repository.name }}
