@@ -3,7 +3,9 @@ name: Build, tag, push, and deploy image
 on:
   push:
     branches:
-    - main
+      - main
+    paths:
+      - 'app/**'
 
 jobs:
   deploy:
