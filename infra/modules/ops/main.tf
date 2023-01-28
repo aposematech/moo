@@ -3,7 +3,7 @@ terraform {
   required_providers {
     betteruptime = {
       source  = "BetterStackHQ/better-uptime"
-      version = "~> 0.3.13"
+      version = "~> 0.3.15"
     }
     checkly = {
       source  = "checkly/checkly"
