@@ -30,6 +30,8 @@ terraform {
       version = "~> 1.6.3"
     }
   }
+
+  required_version = "~> 1.3.7"
 }
 
 # https://registry.terraform.io/providers/integrations/github/latest/docs
@@ -117,9 +119,7 @@ module "api" {
 
 module "ops" {
   source                  = "./modules/ops"
-  registered_domain_name  = module.dns.registered_domain_name
   certificate_domain_name = module.dns.certificate_domain_name
-  hosted_zone_id          = module.dns.hosted_zone_id
   api_gateway_name        = module.api.api_gateway_name
   aws_region              = var.aws_region
 }

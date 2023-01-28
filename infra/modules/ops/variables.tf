@@ -1,15 +1,5 @@
-variable "registered_domain_name" {
-  description = "Route 53 Registered Domain Name"
-  type        = string
-}
-
 variable "certificate_domain_name" {
   description = "SSL Certificate Domain Name"
-  type        = string
-}
-
-variable "hosted_zone_id" {
-  description = "Hosted Zone ID"
   type        = string
 }
 

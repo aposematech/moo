@@ -10,6 +10,8 @@ terraform {
       version = "~> 3.4.3"
     }
   }
+
+  required_version = "~> 1.3.7"
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
