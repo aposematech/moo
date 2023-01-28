@@ -14,5 +14,3 @@ repos:
   rev: v1.77.0
   hooks:
   - id: terraform_fmt
-    args:
-      - --args=-recursive
