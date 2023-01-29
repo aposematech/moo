@@ -100,8 +100,8 @@ module "lambda" {
   aws_account_number = var.aws_account_number
 }
 
-module "dns" {
-  source                 = "./modules/dns"
+module "web" {
+  source                 = "./modules/web"
   registered_domain_name = var.registered_domain_name
   api_subdomain_name     = var.api_subdomain_name
 }
@@ -110,16 +110,16 @@ module "api" {
   source                  = "./modules/api"
   api_gateway_name        = terraform.workspace
   lambda_function_arn     = module.lambda.lambda_function_arn
-  certificate_arn         = module.dns.certificate_arn
-  certificate_domain_name = module.dns.certificate_domain_name
-  hosted_zone_id          = module.dns.hosted_zone_id
+  certificate_arn         = module.web.certificate_arn
+  certificate_domain_name = module.web.certificate_domain_name
+  hosted_zone_id          = module.web.hosted_zone_id
   aws_region              = var.aws_region
   aws_account_number      = var.aws_account_number
 }
 
 module "ops" {
   source                  = "./modules/ops"
-  certificate_domain_name = module.dns.certificate_domain_name
+  certificate_domain_name = module.web.certificate_domain_name
   api_gateway_name        = module.api.api_gateway_name
   aws_region              = var.aws_region
 }
