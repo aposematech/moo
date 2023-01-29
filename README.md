@@ -14,7 +14,7 @@ $ curl -s https://api.djfav.ninja/moo | jq -r .quote | cowsay -d
              U  ||----w |
                 ||     ||
 ```
-# put item
+# put-item
 ```
 $ sudo apt-get update
 $ sudo apt-get install -y uuid
