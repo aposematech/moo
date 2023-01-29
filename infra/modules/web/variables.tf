@@ -3,7 +3,7 @@ variable "registered_domain_name" {
   type        = string
 }
 
-variable "api_subdomain_name" {
-  description = "API Subdomain Name"
+variable "subdomain_name" {
+  description = "Subdomain Name"
   type        = string
 }

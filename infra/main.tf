@@ -71,7 +71,7 @@ module "git" {
   source                  = "./modules/git"
   git_repo_name           = terraform.workspace
   git_repo_description    = var.git_repo_description
-  git_repo_homepage_url   = "https://${var.api_subdomain_name}.${var.registered_domain_name}/${terraform.workspace}"
+  git_repo_homepage_url   = "https://${var.subdomain_name}.${var.registered_domain_name}/${terraform.workspace}"
   git_repo_topics         = ["api", "cowsay", "demo", "quotes"]
   git_repo_visibility     = var.git_repo_visibility
   aws_access_key_id_name  = "AWS_ACCESS_KEY_ID"
@@ -103,7 +103,7 @@ module "lambda" {
 module "web" {
   source                 = "./modules/web"
   registered_domain_name = var.registered_domain_name
-  api_subdomain_name     = var.api_subdomain_name
+  subdomain_name         = var.subdomain_name
 }
 
 module "api" {
