@@ -1,9 +1,9 @@
 # put-item
 ```
-$ sudo apt-get update
-$ sudo apt-get install -y uuid
+sudo apt-get update
+sudo apt-get install -y uuid
 
-$ ./scripts/put-item.sh \
+./scripts/put-item.sh \
 -r "us-east-1" \
 -t "moo" \
 -n "Zarathustra" \
