@@ -1,4 +1,5 @@
 # moo
+
 ```
 sudo apt-get update
 sudo apt-get install -y curl jq cowsay
@@ -14,5 +15,7 @@ curl -s https://api.djfav.ninja/moo | jq -r .quote | cowsay -d
              U  ||----w |
                 ||     ||
 ```
+
 # aws
+
 ![diagram](./moo.drawio.png)
