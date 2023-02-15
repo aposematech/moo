@@ -1,12 +1,4 @@
 terraform {
-  # https://www.terraform.io/language/settings/terraform-cloud
-  cloud {
-    organization = "djfav"
-    workspaces {
-      name = "moo"
-    }
-  }
-
   # https://www.terraform.io/language/providers/requirements
   required_providers {
     github = {
