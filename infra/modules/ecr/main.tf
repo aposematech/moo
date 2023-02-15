@@ -1,15 +1,3 @@
-terraform {
-  # https://www.terraform.io/language/providers/requirements
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.52.0"
-    }
-  }
-
-  required_version = "~> 1.3.7"
-}
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository
 resource "aws_ecr_repository" "ecr_repo" {
   name                 = var.ecr_repo_name

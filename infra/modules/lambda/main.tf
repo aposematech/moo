@@ -1,15 +1,3 @@
-terraform {
-  # https://www.terraform.io/language/providers/requirements
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.52.0"
-    }
-  }
-
-  required_version = "~> 1.3.7"
-}
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
 data "aws_iam_policy_document" "lambda_role_permissions_policy_document" {
   statement {

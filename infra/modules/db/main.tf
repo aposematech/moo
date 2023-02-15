@@ -1,19 +1,3 @@
-terraform {
-  # https://www.terraform.io/language/providers/requirements
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.52.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.4.3"
-    }
-  }
-
-  required_version = "~> 1.3.7"
-}
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
 resource "aws_dynamodb_table" "db_table" {
   name         = var.db_table_name
